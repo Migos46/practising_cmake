@@ -1,5 +1,16 @@
 # Hello world app  
-App to practice some ways of configuring the build system with cmake. The app will print an "Usage message" if no arguments are introduce.  
+App to practice some ways of configuring the build system with cmake. The app will print an "Usage message" if no arguments are introduce.    
+## Options to configure the project  
+The foolowing options are available for this project:
+- DEBUG_BUILD
+- USE_LOG  
+  
+`DEGUG_BUILD` is explained in the section below called `Adding compile options`.  
+`USE_LOG` is an option if the user wants to activate verbose from the application, it will enable all the prints so the user can redirect the output to a `log` file or just have them printed on the `terminal`.  
+To configure the project with this option, add one or both options to the cmake commnad like:  
+`$ cmake -DDEBUG_BUILD=ON -DUSE_LOG=ON ..`  
+`$ cmake -DDEBUG_BUILD=ON ..`  
+`$ cmake -DUSE_LOG=ON ..`  `
 ## Adding compile features  
 Using and `INTERFACE` library to add the c++ standard  
 ## Adding compile options  
@@ -11,7 +22,7 @@ To build the `hello-world` app just:
 and go into that directory  
 `$ cd build`  
 2. Configure the project. Here you can set `DEBUG_BUILD` variable to true, false by default  
-`$ cmake -DDEBUG_BUILD ..`  
+`$ cmake -DDEBUG_BUILD=ON ..`  
 or if you don't want debug just run  
 `$ cmake ..`  
 A message like the following should appear after building correctly:  

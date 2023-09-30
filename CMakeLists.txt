@@ -11,6 +11,8 @@ set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
 
 # If user selects debugging build, build with debug flags
 option(DEBUG_BUILD "If user wants add -g flag to build app" OFF)
+# Configuring the project with or without verbose
+option(USE_LOG "Change the application to be more verbose" OFF)
 
 target_compile_options(vscode_compile_flags INTERFACE
     "$<${gcc_like_cxx}:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>"
@@ -27,3 +29,9 @@ target_compile_options(vscode_compile_flags INTERFACE
 add_executable(vsCode hello-world-vsCode.cpp)
 
 target_link_libraries(vsCode PUBLIC vscode_compile_flags)
+
+# Add a macro like USE_LOG to activate prints and have the posibility to redirect the output either to a file or in the terminal
+# Second, if USE_LOG is ON, lest define "USE_LOG"
+if (USE_LOG)
+    target_compile_definitions(vsCode PRIVATE "USE_LOG")
+endif()
